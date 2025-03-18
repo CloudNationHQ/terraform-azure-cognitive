@@ -1,5 +1,5 @@
 variable "account" {
-  description = "Coggnitive Account Details"
+  description = "Cognitive Account Details"
   type = object({
     name           = string
     location       = string
