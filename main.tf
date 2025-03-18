@@ -72,17 +72,17 @@ resource "azurerm_cognitive_deployment" "deployment" {
   cognitive_account_id = azurerm_cognitive_account.cognitive_account.id
 
   model {
-    format  = each.value.format
-    name    = each.value.name
-    version = each.value.version
+    format  = each.value.model.format
+    name    = each.value.model.name
+    version = try(each.value.model.version, null)
   }
 
   sku {
-    name     = each.value.name
-    tier     = try(each.value.tier, null)
-    size     = try(each.value.size, null)
-    family   = try(each.value.family, null)
-    capacity = try(each.value.capacity, null)
+    name     = each.value.sku.name
+    tier     = try(each.value.sku.tier, null)
+    size     = try(each.value.sku.size, null)
+    family   = try(each.value.sku.family, null)
+    capacity = try(each.value.sku.capacity, null)
   }
 }
 
