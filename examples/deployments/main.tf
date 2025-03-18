@@ -28,17 +28,17 @@ module "cognitiveservices" {
     kind           = "OpenAI"
 
     deployments = {
-      "model1" = {
+      gpt-4o = {
         model = {
           format  = "OpenAI"
-          name    = "model1"
-          version = "1.0"
+          name    = "gpt-4o"
+          version = "2024-08-06"
         }
         sku = {
-          name = "Standard"
+          name     = "DataZoneStandard"
+          capacity = 100
         }
       }
-
     }
   }
 }
