@@ -1,7 +1,7 @@
 resource "azurerm_cognitive_account" "cognitive_account" {
   name                                         = var.account.name
-  location                                     = coalesce(try(var.vnet.location, null), var.location)
-  resource_group_name                          = coalesce(try(var.vnet.resource_group, null), var.resource_group)
+  location                                     = coalesce(try(var.account.location, null), var.location)
+  resource_group_name                          = coalesce(try(var.account.resource_group, null), var.resource_group)
   kind                                         = var.account.kind
   sku_name                                     = var.account.sku_name
   custom_subdomain_name                        = try(var.account.custom_subdomain_name, null)
