@@ -57,7 +57,7 @@ variable "account" {
         capacity = optional(number)
       })
     })))
-    blocklist = optional(map(object({
+    blocklists = optional(map(object({
       name        = optional(string)
       description = optional(string)
     })))

@@ -23,7 +23,7 @@ resource "azurerm_cognitive_account" "cognitive_account" {
 
     content {
       key_vault_key_id   = try(customer_managed_key.value.key_vault_key_id, null)
-      identity_client_id = try([azurerm_user_assigned_identity.identity["uai"].id], each.value.identity_client_id, null)
+      identity_client_id = try(azurerm_user_assigned_identity.identity["uai"].id, each.value.identity_client_id, null)
     }
   }
 
@@ -88,7 +88,7 @@ resource "azurerm_cognitive_deployment" "deployment" {
 
 # blocklist
 resource "azurerm_cognitive_account_rai_blocklist" "blocklist" {
-  for_each = var.account.blocklist != null ? var.account.blocklist : {}
+  for_each = var.account.blocklists != null ? var.account.blocklists : {}
 
 
   name                 = coalesce(lookup(each.value, "name", null), "blocklist-${each.key}")

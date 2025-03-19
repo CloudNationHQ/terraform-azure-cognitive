@@ -40,7 +40,7 @@ module "cognitiveservices" {
         }
       }
     }
-    blocklist = {
+    blocklists = {
       harmful_content = {
         name        = "harmful-content-blocklist"
         description = "Blocks harmful content including hate speech and violence"
