@@ -63,8 +63,6 @@ variable "account" {
     })))
     tags = optional(map(string))
   })
-  nullable = true
-  default  = null
 }
 
 variable "keyvault" {
