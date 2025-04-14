@@ -1,22 +1,32 @@
 resource "azurerm_cognitive_account" "cognitive_account" {
+
+  resource_group_name = coalesce(
+    lookup(
+      var.account, "resource_group", null
+    ), var.resource_group
+  )
+
+  location = coalesce(
+    lookup(var.account, "location", null
+    ), var.location
+  )
+
   name                                         = var.account.name
-  location                                     = coalesce(try(var.account.location, null), var.location)
-  resource_group_name                          = coalesce(try(var.account.resource_group, null), var.resource_group)
   kind                                         = var.account.kind
   sku_name                                     = var.account.sku_name
-  custom_subdomain_name                        = try(var.account.custom_subdomain_name, null)
-  dynamic_throttling_enabled                   = try(var.account.dynamic_throttling_enabled, false)
-  fqdns                                        = try(var.account.fqdns, null)
-  local_auth_enabled                           = try(var.account.local_auth_enabled, false)
-  metrics_advisor_aad_client_id                = try(var.account.metrics_advisor_aad_client_id, null)
-  metrics_advisor_aad_tenant_id                = try(var.account.metrics_advisor_aad_tenant_id, null)
-  metrics_advisor_super_user_name              = try(var.account.metrics_advisor_super_user_name, null)
-  metrics_advisor_website_name                 = try(var.account.metrics_advisor_website_name, null)
-  outbound_network_access_restricted           = try(var.account.outbound_network_access_restricted, false)
-  public_network_access_enabled                = try(var.account.public_network_access_enabled, false)
-  qna_runtime_endpoint                         = try(var.account.qna_runtime_endpoint, null)
-  custom_question_answering_search_service_id  = try(var.account.custom_question_answering_search_service_id, null)
-  custom_question_answering_search_service_key = try(var.account.custom_question_answering_search_service_key, null)
+  custom_subdomain_name                        = var.account.custom_subdomain_name
+  dynamic_throttling_enabled                   = var.account.dynamic_throttling_enabled
+  fqdns                                        = var.account.fqdns
+  local_auth_enabled                           = var.account.local_auth_enabled
+  metrics_advisor_aad_client_id                = var.account.metrics_advisor_aad_client_id
+  metrics_advisor_aad_tenant_id                = var.account.metrics_advisor_aad_tenant_id
+  metrics_advisor_super_user_name              = var.account.metrics_advisor_super_user_name
+  metrics_advisor_website_name                 = var.account.metrics_advisor_website_name
+  outbound_network_access_restricted           = var.account.outbound_network_access_restricted
+  public_network_access_enabled                = var.account.public_network_access_enabled
+  qna_runtime_endpoint                         = var.account.qna_runtime_endpoint
+  custom_question_answering_search_service_id  = var.account.custom_question_answering_search_service_id
+  custom_question_answering_search_service_key = var.account.custom_question_answering_search_service_key
 
   dynamic "customer_managed_key" {
     for_each = try(var.account.customer_managed_key, null) != null ? [var.account.customer_managed_key] : []
@@ -78,15 +88,15 @@ resource "azurerm_cognitive_deployment" "deployment" {
   model {
     format  = each.value.model.format
     name    = each.value.model.name
-    version = try(each.value.model.version, null)
+    version = each.value.model.version
   }
 
   sku {
     name     = each.value.sku.name
-    tier     = try(each.value.sku.tier, null)
-    size     = try(each.value.sku.size, null)
-    family   = try(each.value.sku.family, null)
-    capacity = try(each.value.sku.capacity, null)
+    tier     = each.value.sku.tier
+    size     = each.value.sku.size
+    family   = each.value.sku.family
+    capacity = each.value.sku.capacity
   }
 }
 
@@ -99,7 +109,7 @@ resource "azurerm_cognitive_account_rai_blocklist" "blocklist" {
 
   name                 = coalesce(lookup(each.value, "name", null), "blocklist-${each.key}")
   cognitive_account_id = azurerm_cognitive_account.cognitive_account.id
-  description          = try(each.value.description, null)
+  description          = each.value.description
 
 }
 
