@@ -205,5 +205,5 @@ MIT Licensed. See [LICENSE](./LICENSE) for full details.
 
 ## References
 
-- [Documentation](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal)
-- [Rest Api](https://learn.microsoft.com/en-us/rest/api/resources/resource-groups)
+- [Documentation](https://azure.microsoft.com/en-us/products/ai-services)
+- [Rest Api](https://learn.microsoft.com/en-us/rest/api/cognitiveservices/)
