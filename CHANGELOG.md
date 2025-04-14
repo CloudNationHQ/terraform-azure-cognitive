@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/CloudNationHQ/terraform-azure-cognitive/compare/v1.0.0...v1.0.1) (2025-04-14)
+
+
+### Bug Fixes
+
+* fix increment module version in usages ([#3](https://github.com/CloudNationHQ/terraform-azure-cognitive/issues/3)) ([ed8dea2](https://github.com/CloudNationHQ/terraform-azure-cognitive/commit/ed8dea2d1ba7d7878195909c48518f17316ad731))
+
 ## 1.0.0 (2025-04-14)
 
 
