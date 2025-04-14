@@ -4,7 +4,8 @@ This example details OpenAI deployments with model configurations and blocklists
 
 ```hcl
 module "cognitiveservices" {
-  source = "../.."
+  source  = "cloudnationhq/cognitive/azure"
+  version = "~> 0.1"
 
   account = {
     name           = module.naming.cognitive_account.name_unique
