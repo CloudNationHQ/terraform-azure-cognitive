@@ -132,6 +132,14 @@ Type: `string`
 
 Default: `null`
 
+### <a name="input_naming"></a> [naming](#input\_naming)
+
+Description: contains naming convention
+
+Type: `map(string)`
+
+Default: `null`
+
 ### <a name="input_resource_group"></a> [resource\_group](#input\_resource\_group)
 
 Description: default resource group to be used.
