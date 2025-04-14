@@ -77,6 +77,12 @@ variable "location" {
   default     = null
 }
 
+variable "naming" {
+  description = "contains naming convention"
+  type        = map(string)
+  default     = null
+}
+
 variable "resource_group" {
   description = "default resource group to be used."
   type        = string

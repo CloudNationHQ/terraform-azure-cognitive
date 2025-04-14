@@ -1,26 +1,10 @@
-module "naming" {
-  source  = "cloudnationhq/naming/azure"
-  version = "~> 0.24"
+This example details OpenAI deployments with model configurations and blocklists.
 
-  suffix = ["demo", "dev"]
-}
+## Usage: deployments
 
-module "rg" {
-  source  = "cloudnationhq/rg/azure"
-  version = "~> 2.0"
-
-  groups = {
-    demo = {
-      name     = module.naming.resource_group.name_unique
-      location = "northeurope"
-    }
-  }
-}
-
+```hcl
 module "cognitiveservices" {
   source = "../.."
-
-  naming = local.naming
 
   account = {
     name           = module.naming.cognitive_account.name_unique
@@ -37,11 +21,12 @@ module "cognitiveservices" {
           version = "2024-08-06"
         }
         sku = {
-          name     = "DataZoneStandard"
+          name     = "DataZoneStandard" 
           capacity = 100
         }
       }
     }
+    
     blocklists = {
       harmful_content = {
         name        = "harmful-content-blocklist"
@@ -49,7 +34,7 @@ module "cognitiveservices" {
       },
       personal_info = {
         name        = "personal-info-blocklist"
-        description = "Blocks personal identifiable information"
+        description = "Blocks personal identifiable information" 
       },
       custom_terms = {
         description = "Custom terms and phrases to block"

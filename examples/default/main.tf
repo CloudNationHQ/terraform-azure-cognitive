@@ -1,6 +1,6 @@
 module "naming" {
   source  = "cloudnationhq/naming/azure"
-  version = "~> 0.22"
+  version = "~> 0.24"
 
   suffix = ["demo", "dev"]
 }
@@ -18,7 +18,8 @@ module "rg" {
 }
 
 module "cognitiveservices" {
-  source = "../.."
+  source  = "cloudnationhq/cognitive/azure"
+  version = "~> 0.1"
 
   account = {
     name           = module.naming.cognitive_account.name_unique
