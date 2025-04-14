@@ -64,7 +64,10 @@ resource "azurerm_cognitive_account" "cognitive_account" {
 }
 
 resource "azurerm_cognitive_deployment" "deployment" {
-  for_each = try(var.account.deployments, {})
+  for_each = coalesce(
+    var.account.deployments != null ? var.account.deployments : {},
+    {}
+  )
 
   name = coalesce(
     each.value.name,
@@ -89,8 +92,10 @@ resource "azurerm_cognitive_deployment" "deployment" {
 
 # blocklist
 resource "azurerm_cognitive_account_rai_blocklist" "blocklist" {
-  for_each = try(var.account.blocklists, {})
-
+  for_each = coalesce(
+    var.account.blocklists != null ? var.account.blocklists : {},
+    {}
+  )
 
   name                 = coalesce(lookup(each.value, "name", null), "blocklist-${each.key}")
   cognitive_account_id = azurerm_cognitive_account.cognitive_account.id

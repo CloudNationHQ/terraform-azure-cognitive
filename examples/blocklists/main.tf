@@ -43,5 +43,18 @@ module "cognitiveservices" {
         }
       }
     }
+    blocklists = {
+      harmful_content = {
+        name        = "harmful-content-blocklist"
+        description = "Blocks harmful content including hate speech and violence"
+      },
+      personal_info = {
+        name        = "personal-info-blocklist"
+        description = "Blocks personal identifiable information"
+      },
+      custom_terms = {
+        description = "Custom terms and phrases to block"
+      }
+    }
   }
 }
