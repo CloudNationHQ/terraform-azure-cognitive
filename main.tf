@@ -49,8 +49,8 @@ resource "azurerm_cognitive_account" "cognitive_account" {
     for_each = try(var.account.storage, null) != null ? { default = var.account.storage } : {}
 
     content {
-      storage_account_id = try(storage.value.storage_account_id, null)
-      identity_client_id = try(storage.value.identity_client_id, null)
+      storage_account_id = storage.value.storage_account_id
+      identity_client_id = storage.value.identity_client_id
     }
   }
 

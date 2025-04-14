@@ -42,53 +42,59 @@ The following input variables are required:
 
 ### <a name="input_account"></a> [account](#input\_account)
 
-Description: Configuration for the Azure Cognitive Services account
+Description: Contains the cognitive services account configuration
 
 Type:
 
 ```hcl
 object({
     name                                         = string
-    location                                     = optional(string)
-    resource_group                               = optional(string)
-    kind                                         = string
-    sku_name                                     = string
+    resource_group                               = optional(string, null)
+    location                                     = optional(string, null)
+    tags                                         = optional(map(string))
+    sku_name                                     = optional(string, "S0")
+    kind                                         = optional(string, "CognitiveServices")
     custom_subdomain_name                        = optional(string)
-    dynamic_throttling_enabled                   = optional(bool)
+    dynamic_throttling_enabled                   = optional(bool, false)
     fqdns                                        = optional(list(string))
-    local_auth_enabled                           = optional(bool)
+    local_auth_enabled                           = optional(bool, false)
     metrics_advisor_aad_client_id                = optional(string)
     metrics_advisor_aad_tenant_id                = optional(string)
     metrics_advisor_super_user_name              = optional(string)
     metrics_advisor_website_name                 = optional(string)
-    outbound_network_access_restricted           = optional(bool)
-    public_network_access_enabled                = optional(bool)
+    outbound_network_access_restricted           = optional(bool, false)
+    public_network_access_enabled                = optional(bool, false)
     qna_runtime_endpoint                         = optional(string)
     custom_question_answering_search_service_id  = optional(string)
     custom_question_answering_search_service_key = optional(string)
+
     customer_managed_key = optional(object({
       key_vault_key_id   = string
       identity_client_id = optional(string)
     }))
+
     identity = optional(object({
-      type           = optional(string)
       name           = optional(string)
-      location       = optional(string)
+      type           = optional(string, "UserAssigned")
       resource_group = optional(string)
-      identity_ids   = optional(list(string))
+      location       = optional(string)
+      identity_ids   = optional(list(string), [])
     }))
+
     storage = optional(object({
-      storage_account_id = string
-      identity_client_id = optional(string)
+      storage_account_id = optional(string, null)
+      identity_client_id = optional(string, null)
     }))
+
     network_acls = optional(object({
-      default_action = string
+      default_action = optional(string)
       ip_rules       = optional(list(string))
       virtual_network_rules = optional(object({
         subnet_id                            = string
-        ignore_missing_vnet_service_endpoint = optional(bool)
+        ignore_missing_vnet_service_endpoint = optional(bool, false)
       }))
     }))
+
     deployments = optional(map(object({
       name = optional(string)
       model = object({
@@ -104,25 +110,17 @@ object({
         capacity = optional(number)
       })
     })))
+
     blocklists = optional(map(object({
       name        = optional(string)
       description = optional(string)
     })))
-    tags = optional(map(string))
   })
 ```
 
 ## Optional Inputs
 
 The following input variables are optional (have default values):
-
-### <a name="input_keyvault"></a> [keyvault](#input\_keyvault)
-
-Description: keyvault to store secrets
-
-Type: `string`
-
-Default: `null`
 
 ### <a name="input_location"></a> [location](#input\_location)
 
@@ -199,8 +197,8 @@ We welcome contributions from the community! Whether it's reporting a bug, sugge
 
 For more information, please see our contribution [guidelines](./CONTRIBUTING.md). <br><br>
 
-<a href="https://github.com/cloudnationhq/terraform-azure-rg/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=cloudnationhq/terraform-azure-rg" />
+<a href="https://github.com/cloudnationhq/terraform-azure-cognitive/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=cloudnationhq/terraform-azure-cognitive" />
 </a>
 
 ## Authors

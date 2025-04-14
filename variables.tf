@@ -35,8 +35,8 @@ variable "account" {
     }))
 
     storage = optional(object({
-      storage_account_id = optional(string)
-      identity_client_id = optional(string)
+      storage_account_id = optional(string, null)
+      identity_client_id = optional(string, null)
     }))
 
     network_acls = optional(object({
