@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.0 (2025-04-14)
+
+
+### Features
+
+* add initial resources  ([#1](https://github.com/CloudNationHQ/terraform-azure-cognitive/issues/1)) ([9f5bf23](https://github.com/CloudNationHQ/terraform-azure-cognitive/commit/9f5bf2393e71ea68b146f450d77dc9503f482331))
+
 ## [2.5.0](https://github.com/CloudNationHQ/terraform-azure-rg/compare/v2.4.0...v2.5.0) (2025-04-11)
 
 
