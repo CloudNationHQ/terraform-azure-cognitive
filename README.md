@@ -180,6 +180,10 @@ Description: Contains all the outputs for the cognitive blocklists
 ### <a name="output_deployments"></a> [deployments](#output\_deployments)
 
 Description: Contains all the outputs for the cognitive deployments
+
+### <a name="output_policies"></a> [policies](#output\_policies)
+
+Description: Contains all the outputs for the cognitive policies
 <!-- END_TF_DOCS -->
 
 ## Goals
