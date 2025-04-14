@@ -12,8 +12,3 @@ output "blocklists" {
   description = "Contains all the outputs for the cognitive blocklists"
   value       = azurerm_cognitive_account_rai_blocklist.blocklist
 }
-
-output "identity" {
-  description = "Contains all the outputs for the identity"
-  value       = azurerm_user_assigned_identity.identity
-}

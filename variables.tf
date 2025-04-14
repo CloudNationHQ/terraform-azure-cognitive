@@ -27,11 +27,8 @@ variable "account" {
     }))
 
     identity = optional(object({
-      name           = optional(string)
-      type           = optional(string, "UserAssigned")
-      resource_group = optional(string)
-      location       = optional(string)
-      identity_ids   = optional(list(string), [])
+      type         = optional(string, "UserAssigned")
+      identity_ids = optional(list(string), [])
     }))
 
     storage = optional(object({

@@ -203,7 +203,7 @@ For more information, please see our contribution [guidelines](./CONTRIBUTING.md
 
 ## Authors
 
-Module is maintained by [these awesome contributors](https://github.com/cloudnationhq/terraform-azure-rg/graphs/contributors).
+Module is maintained by [these awesome contributors](https://github.com/cloudnationhq/terraform-azure-cognitive/graphs/contributors).
 
 ## License
 

@@ -32,16 +32,16 @@ resource "azurerm_cognitive_account" "cognitive_account" {
     for_each = try(var.account.customer_managed_key, null) != null ? [var.account.customer_managed_key] : []
 
     content {
-      key_vault_key_id   = try(customer_managed_key.value.key_vault_key_id, null)
-      identity_client_id = try(azurerm_user_assigned_identity.identity["uai"].id, each.value.identity_client_id, null)
+      key_vault_key_id   = customer_managed_key.value.key_vault_key_id
+      identity_client_id = customer_managed_key.value.identity_client_id
     }
   }
 
   dynamic "identity" {
     for_each = try(var.account.identity, null) != null ? { default = var.account.identity } : {}
     content {
-      type         = try(var.account.identity.type, "UserAssigned")
-      identity_ids = concat([azurerm_user_assigned_identity.identity["uai"].id], try(identity.value.identity_ids, []))
+      type         = identity.value.type
+      identity_ids = identity.value.identity_ids
     }
   }
 
@@ -58,15 +58,15 @@ resource "azurerm_cognitive_account" "cognitive_account" {
     for_each = try(var.account.network_acls, null) != null ? { default = var.account.network_acls } : {}
 
     content {
-      default_action = try(network_acls.value.default_action, null)
-      ip_rules       = try(network_acls.value.ip_rules, null)
+      default_action = network_acls.value.default_action
+      ip_rules       = network_acls.value.ip_rules
 
       dynamic "virtual_network_rules" {
         for_each = try(network_acls.value.virtual_network_rules, null) != null ? { default = network_acls.value.virtual_network_rules } : {}
 
         content {
-          subnet_id                            = try(virtual_network_rules.value.subnet_id, null)
-          ignore_missing_vnet_service_endpoint = try(virtual_network_rules.value.ignore_missing_vnet_service_endpoint, false)
+          subnet_id                            = virtual_network_rules.value.subnet_id
+          ignore_missing_vnet_service_endpoint = virtual_network_rules.value.ignore_missing_vnet_service_endpoint
         }
       }
     }
@@ -107,19 +107,11 @@ resource "azurerm_cognitive_account_rai_blocklist" "blocklist" {
     {}
   )
 
-  name                 = coalesce(lookup(each.value, "name", null), "blocklist-${each.key}")
+  name = coalesce(
+    each.value.name,
+  "blocklist-${each.key}")
+
   cognitive_account_id = azurerm_cognitive_account.cognitive_account.id
   description          = each.value.description
 
-}
-
-# user assigned identity
-resource "azurerm_user_assigned_identity" "identity" {
-  for_each = try(var.account.identity, null) != null ? { uai = var.account.identity } : {}
-
-  name                = try(var.account.identity.name, "uai-${var.account.name}")
-  resource_group_name = coalesce(try(var.account.identity.resource_group, null), try(var.account.resource_group, null), var.resource_group)
-  location            = coalesce(try(var.account.identity.location, null), try(var.account.location, null), var.location)
-
-  tags = try(var.account.tags, var.tags, {})
 }
