@@ -34,7 +34,6 @@ The following resources are used by this module:
 - [azurerm_cognitive_account.cognitive_account](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account) (resource)
 - [azurerm_cognitive_account_rai_blocklist.blocklist](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account_rai_blocklist) (resource)
 - [azurerm_cognitive_deployment.deployment](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_deployment) (resource)
-- [azurerm_user_assigned_identity.identity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/user_assigned_identity) (resource)
 
 ## Required Inputs
 
@@ -74,11 +73,8 @@ object({
     }))
 
     identity = optional(object({
-      name           = optional(string)
-      type           = optional(string, "UserAssigned")
-      resource_group = optional(string)
-      location       = optional(string)
-      identity_ids   = optional(list(string), [])
+      type         = optional(string, "UserAssigned")
+      identity_ids = optional(list(string), [])
     }))
 
     storage = optional(object({
@@ -169,10 +165,6 @@ Description: Contains all the outputs for the cognitive blocklists
 ### <a name="output_deployments"></a> [deployments](#output\_deployments)
 
 Description: Contains all the outputs for the cognitive deployments
-
-### <a name="output_identity"></a> [identity](#output\_identity)
-
-Description: Contains all the outputs for the identity
 <!-- END_TF_DOCS -->
 
 ## Goals

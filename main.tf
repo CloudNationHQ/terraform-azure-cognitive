@@ -71,6 +71,10 @@ resource "azurerm_cognitive_account" "cognitive_account" {
       }
     }
   }
+
+  tags = try(
+    var.account.tags, var.tags
+  )
 }
 
 resource "azurerm_cognitive_deployment" "deployment" {
@@ -113,5 +117,4 @@ resource "azurerm_cognitive_account_rai_blocklist" "blocklist" {
 
   cognitive_account_id = azurerm_cognitive_account.cognitive_account.id
   description          = each.value.description
-
 }
