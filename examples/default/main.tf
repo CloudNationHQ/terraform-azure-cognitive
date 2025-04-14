@@ -19,7 +19,7 @@ module "rg" {
 
 module "cognitiveservices" {
   source  = "cloudnationhq/cognitive/azure"
-  version = "~> 0.1"
+  version = "~> 1.0"
 
   account = {
     name           = module.naming.cognitive_account.name_unique
