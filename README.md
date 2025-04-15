@@ -193,10 +193,6 @@ For more information, please see our contribution [guidelines](./CONTRIBUTING.md
   <img src="https://contrib.rocks/image?repo=cloudnationhq/terraform-azure-cognitive" />
 </a>
 
-## Authors
-
-Module is maintained by [these awesome contributors](https://github.com/cloudnationhq/terraform-azure-cognitive/graphs/contributors).
-
 ## License
 
 MIT Licensed. See [LICENSE](./LICENSE) for full details.
