@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/CloudNationHQ/terraform-azure-cognitive/compare/v1.0.1...v1.1.0) (2025-04-15)
+
+
+### Features
+
+* add rai policy support and example configurations ([#5](https://github.com/CloudNationHQ/terraform-azure-cognitive/issues/5)) ([98745d6](https://github.com/CloudNationHQ/terraform-azure-cognitive/commit/98745d6a05ce6418e3f0933087354119649b5948))
+
 ## [1.0.1](https://github.com/CloudNationHQ/terraform-azure-cognitive/compare/v1.0.0...v1.0.1) (2025-04-14)
 
 
