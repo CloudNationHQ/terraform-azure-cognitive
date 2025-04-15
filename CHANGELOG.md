@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/CloudNationHQ/terraform-azure-cog/compare/v1.1.0...v1.1.1) (2025-04-15)
+
+
+### Bug Fixes
+
+* module references in usages ([#7](https://github.com/CloudNationHQ/terraform-azure-cog/issues/7)) ([f0ab1e7](https://github.com/CloudNationHQ/terraform-azure-cog/commit/f0ab1e7f375b59d15356fef8ad3da6d51fcf6fed))
+
 ## [1.1.0](https://github.com/CloudNationHQ/terraform-azure-cognitive/compare/v1.0.1...v1.1.0) (2025-04-15)
 
 
