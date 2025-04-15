@@ -208,8 +208,8 @@ We welcome contributions from the community! Whether it's reporting a bug, sugge
 
 For more information, please see our contribution [guidelines](./CONTRIBUTING.md). <br><br>
 
-<a href="https://github.com/cloudnationhq/terraform-azure-cognitive/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=cloudnationhq/terraform-azure-cognitive" />
+<a href="https://github.com/cloudnationhq/terraform-azure-cog/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=cloudnationhq/terraform-azure-cog" />
 </a>
 
 ## License

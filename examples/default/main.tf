@@ -18,7 +18,7 @@ module "rg" {
 }
 
 module "cognitiveservices" {
-  source  = "cloudnationhq/cognitive/azure"
+  source  = "cloudnationhq/cog/azure"
   version = "~> 1.0"
 
   account = {
