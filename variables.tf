@@ -65,6 +65,20 @@ variable "account" {
       name        = optional(string)
       description = optional(string)
     })))
+
+    policies = optional(map(object({
+      name             = optional(string)
+      base_policy_name = string
+      mode             = optional(string)
+      tags             = optional(map(string))
+      content_filter = object({
+        name               = string
+        filter_enabled     = bool
+        block_enabled      = bool
+        severity_threshold = string
+        source             = string
+      })
+    })))
   })
 
   validation {

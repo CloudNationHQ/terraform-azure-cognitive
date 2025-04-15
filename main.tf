@@ -118,3 +118,30 @@ resource "azurerm_cognitive_account_rai_blocklist" "blocklist" {
   cognitive_account_id = azurerm_cognitive_account.cognitive_account.id
   description          = each.value.description
 }
+
+resource "azurerm_cognitive_account_rai_policy" "policy" {
+  for_each = coalesce(
+    var.account.policies != null ? var.account.policies : {},
+    {}
+  )
+
+  name = coalesce(
+    each.value.name,
+    "policy-${each.key}"
+  )
+
+  cognitive_account_id = azurerm_cognitive_account.cognitive_account.id
+  base_policy_name     = each.value.base_policy_name
+
+  content_filter {
+    name               = each.value.content_filter.name
+    filter_enabled     = each.value.content_filter.filter_enabled
+    block_enabled      = each.value.content_filter.block_enabled
+    severity_threshold = each.value.content_filter.severity_threshold
+    source             = each.value.content_filter.source
+  }
+
+  tags = try(
+    each.value.tags, var.tags
+  )
+}

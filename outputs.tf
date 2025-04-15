@@ -12,3 +12,8 @@ output "blocklists" {
   description = "Contains all the outputs for the cognitive blocklists"
   value       = azurerm_cognitive_account_rai_blocklist.blocklist
 }
+
+output "policies" {
+  description = "Contains all the outputs for the cognitive policies"
+  value       = azurerm_cognitive_account_rai_policy.policy
+}

@@ -33,6 +33,7 @@ The following resources are used by this module:
 
 - [azurerm_cognitive_account.cognitive_account](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account) (resource)
 - [azurerm_cognitive_account_rai_blocklist.blocklist](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account_rai_blocklist) (resource)
+- [azurerm_cognitive_account_rai_policy.policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account_rai_policy) (resource)
 - [azurerm_cognitive_deployment.deployment](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_deployment) (resource)
 
 ## Required Inputs
@@ -111,6 +112,20 @@ object({
       name        = optional(string)
       description = optional(string)
     })))
+
+    policies = optional(map(object({
+      name             = optional(string)
+      base_policy_name = string
+      mode             = optional(string)
+      tags             = optional(map(string))
+      content_filter = object({
+        name               = string
+        filter_enabled     = bool
+        block_enabled      = bool
+        severity_threshold = string
+        source             = string
+      })
+    })))
   })
 ```
 
@@ -165,6 +180,10 @@ Description: Contains all the outputs for the cognitive blocklists
 ### <a name="output_deployments"></a> [deployments](#output\_deployments)
 
 Description: Contains all the outputs for the cognitive deployments
+
+### <a name="output_policies"></a> [policies](#output\_policies)
+
+Description: Contains all the outputs for the cognitive policies
 <!-- END_TF_DOCS -->
 
 ## Goals
