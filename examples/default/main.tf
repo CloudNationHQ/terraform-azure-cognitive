@@ -19,13 +19,13 @@ module "rg" {
 
 module "cognitiveservices" {
   source  = "cloudnationhq/cog/azure"
-  version = "~> 1.0"
+  version = "~> 2.0"
 
   account = {
-    name           = module.naming.cognitive_account.name_unique
-    resource_group = module.rg.groups.demo.name
-    location       = module.rg.groups.demo.location
-    sku_name       = "S0"
-    kind           = "OpenAI"
+    name                = module.naming.cognitive_account.name_unique
+    resource_group_name = module.rg.groups.demo.name
+    location            = module.rg.groups.demo.location
+    sku_name            = "S0"
+    kind                = "OpenAI"
   }
 }

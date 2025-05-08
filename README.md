@@ -49,7 +49,7 @@ Type:
 ```hcl
 object({
     name                                         = string
-    resource_group                               = optional(string, null)
+    resource_group_name                          = optional(string, null)
     location                                     = optional(string, null)
     tags                                         = optional(map(string))
     sku_name                                     = optional(string, "S0")
@@ -67,22 +67,18 @@ object({
     qna_runtime_endpoint                         = optional(string)
     custom_question_answering_search_service_id  = optional(string)
     custom_question_answering_search_service_key = optional(string)
-
     customer_managed_key = optional(object({
       key_vault_key_id   = string
       identity_client_id = optional(string)
     }))
-
     identity = optional(object({
       type         = optional(string, "UserAssigned")
       identity_ids = optional(list(string), [])
     }))
-
     storage = optional(object({
       storage_account_id = optional(string, null)
       identity_client_id = optional(string, null)
     }))
-
     network_acls = optional(object({
       default_action = optional(string)
       ip_rules       = optional(list(string))
@@ -91,7 +87,6 @@ object({
         ignore_missing_vnet_service_endpoint = optional(bool, false)
       }))
     }))
-
     deployments = optional(map(object({
       name = optional(string)
       model = object({
@@ -107,12 +102,10 @@ object({
         capacity = optional(number)
       })
     })))
-
     blocklists = optional(map(object({
       name        = optional(string)
       description = optional(string)
     })))
-
     policies = optional(map(object({
       name             = optional(string)
       base_policy_name = string
@@ -149,7 +142,7 @@ Type: `map(string)`
 
 Default: `null`
 
-### <a name="input_resource_group"></a> [resource\_group](#input\_resource\_group)
+### <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name)
 
 Description: default resource group to be used.
 

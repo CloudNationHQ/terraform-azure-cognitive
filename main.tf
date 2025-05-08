@@ -2,8 +2,8 @@ resource "azurerm_cognitive_account" "cognitive_account" {
 
   resource_group_name = coalesce(
     lookup(
-      var.account, "resource_group", null
-    ), var.resource_group
+      var.account, "resource_group_name", null
+    ), var.resource_group_name
   )
 
   location = coalesce(
@@ -27,6 +27,10 @@ resource "azurerm_cognitive_account" "cognitive_account" {
   qna_runtime_endpoint                         = var.account.qna_runtime_endpoint
   custom_question_answering_search_service_id  = var.account.custom_question_answering_search_service_id
   custom_question_answering_search_service_key = var.account.custom_question_answering_search_service_key
+
+  tags = coalesce(
+    var.account.tags, var.tags
+  )
 
   dynamic "customer_managed_key" {
     for_each = try(var.account.customer_managed_key, null) != null ? [var.account.customer_managed_key] : []
@@ -71,10 +75,6 @@ resource "azurerm_cognitive_account" "cognitive_account" {
       }
     }
   }
-
-  tags = try(
-    var.account.tags, var.tags
-  )
 }
 
 resource "azurerm_cognitive_deployment" "deployment" {
@@ -141,7 +141,7 @@ resource "azurerm_cognitive_account_rai_policy" "policy" {
     source             = each.value.content_filter.source
   }
 
-  tags = try(
+  tags = coalesce(
     each.value.tags, var.tags
   )
 }
