@@ -2,7 +2,7 @@ variable "account" {
   description = "Contains the cognitive services account configuration"
   type = object({
     name                                         = string
-    resource_group                               = optional(string, null)
+    resource_group_name                          = optional(string, null)
     location                                     = optional(string, null)
     tags                                         = optional(map(string))
     sku_name                                     = optional(string, "S0")
@@ -20,22 +20,18 @@ variable "account" {
     qna_runtime_endpoint                         = optional(string)
     custom_question_answering_search_service_id  = optional(string)
     custom_question_answering_search_service_key = optional(string)
-
     customer_managed_key = optional(object({
       key_vault_key_id   = string
       identity_client_id = optional(string)
     }))
-
     identity = optional(object({
       type         = optional(string, "UserAssigned")
       identity_ids = optional(list(string), [])
     }))
-
     storage = optional(object({
       storage_account_id = optional(string, null)
       identity_client_id = optional(string, null)
     }))
-
     network_acls = optional(object({
       default_action = optional(string)
       ip_rules       = optional(list(string))
@@ -44,7 +40,6 @@ variable "account" {
         ignore_missing_vnet_service_endpoint = optional(bool, false)
       }))
     }))
-
     deployments = optional(map(object({
       name = optional(string)
       model = object({
@@ -60,12 +55,10 @@ variable "account" {
         capacity = optional(number)
       })
     })))
-
     blocklists = optional(map(object({
       name        = optional(string)
       description = optional(string)
     })))
-
     policies = optional(map(object({
       name             = optional(string)
       base_policy_name = string
@@ -87,7 +80,7 @@ variable "account" {
   }
 
   validation {
-    condition     = var.account.resource_group != null || var.resource_group != null
+    condition     = var.account.resource_group_name != null || var.resource_group_name != null
     error_message = "resource group name must be provided either in the account object or as a separate variable."
   }
 }
@@ -104,7 +97,7 @@ variable "location" {
   default     = null
 }
 
-variable "resource_group" {
+variable "resource_group_name" {
   description = "default resource group to be used."
   type        = string
   default     = null
