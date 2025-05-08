@@ -7,6 +7,11 @@
 
 * The data structure changed, causing a recreate on existing resources.
 
+### Upgrade from v1.1.1 to v2.0.0:
+
+- Update module reference to: `version = "~> 2.0"`
+- The property and variable resource_group is renamed to resource_group_name
+
 ### Features
 
 * small refactor ([#11](https://github.com/CloudNationHQ/terraform-azure-cog/issues/11)) ([ad8c3a9](https://github.com/CloudNationHQ/terraform-azure-cog/commit/ad8c3a94f69ad08f678a52aa7ff6ae25a7dd6eac))
