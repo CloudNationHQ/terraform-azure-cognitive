@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/CloudNationHQ/terraform-azure-cog/compare/v1.1.1...v2.0.0) (2025-05-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* The data structure changed, causing a recreate on existing resources.
+
+### Features
+
+* small refactor ([#11](https://github.com/CloudNationHQ/terraform-azure-cog/issues/11)) ([ad8c3a9](https://github.com/CloudNationHQ/terraform-azure-cog/commit/ad8c3a94f69ad08f678a52aa7ff6ae25a7dd6eac))
+
 ## [1.1.1](https://github.com/CloudNationHQ/terraform-azure-cog/compare/v1.1.0...v1.1.1) (2025-04-15)
 
 
